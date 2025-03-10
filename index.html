@@ -11,48 +11,88 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #f4f4f4;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
             margin: 0;
+        }
+        .card-container {
+            perspective: 1000px;
         }
         .business-card {
-            background-color: #ffffff;
             width: 350px;
-            padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            height: 200px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+        }
+        .business-card:hover {
+            transform: rotateY(180deg);
+        }
+        .card-side {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
             border-radius: 10px;
             text-align: center;
+            padding: 20px;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
         }
-        .business-card h1 {
-            color: #333;
+        .card-front {
+            z-index: 2;
+            background: rgba(255, 255, 255, 0.15);
+        }
+        .card-back {
+            transform: rotateY(180deg);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        .card-front h1, .card-back h1 {
+            color: #fff;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
             margin: 0;
+            font-size: 24px;
         }
-        .business-card p {
-            color: #777;
+        .card-front p, .card-back p {
+            color: rgba(255, 255, 255, 0.8);
             margin: 10px 0;
+            font-size: 16px;
         }
-        .business-card .contact-info {
+        .contact-info {
             margin-top: 20px;
         }
-        .business-card .contact-info p {
+        .contact-info p {
             margin: 5px 0;
         }
-        .business-card .contact-info a {
-            color: #007BFF;
+        .contact-info a {
+            color: #fff;
+            font-weight: bold;
             text-decoration: none;
         }
-        .business-card .contact-info a:hover {
+        .contact-info a:hover {
             text-decoration: underline;
         }
     </style>
 </head>
 <body>
-    <div class="business-card">
-        <h1>Auction Hub</h1>
-        <p>Your Trusted Auction Partner</p>
-        <div class="contact-info">
-            <p>Email: <a href="mailto:info@auctionhub.com">info@auctionhub.com</a></p>
-            <p>Phone: <a href="tel:+1234567890">+1 234 567 890</a></p>
-            <p>Website: <a href="https://www.auctionhub.com" target="_blank">www.auctionhub.com</a></p>
+    <div class="card-container">
+        <div class="business-card">
+            <div class="card-side card-front">
+                <h1>Auction Hub</h1>
+                <p>Your Trusted Auction Partner</p>
+                <div class="contact-info">
+                    <p>Email: <a href="mailto:info@auctionhub.com">info@auctionhub.com</a></p>
+                    <p>Phone: <a href="tel:+1234567890">+1 234 567 890</a></p>
+                    <p>Website: <a href="https://www.auctionhub.com" target="_blank">www.auctionhub.com</a></p>
+                </div>
+            </div>
+            <div class="card-side card-back">
+                <h1>About Us</h1>
+                <p>We provide the best auction services in the industry.</p>
+                <p>Contact us for more information and partnership opportunities.</p>
+            </div>
         </div>
     </div>
 </body>
